@@ -13,12 +13,11 @@ if ('geolocation' in navigator) {
       const api_url = `/weather/${lat},${lon}`;
       const response = await fetch(api_url);
       const json = await response.json();
-      console.log(json)
       weather = json.weather;
 
       document.getElementById('temp').textContent = weather.current.temp_c;
-      document.getElementById('city').textContent = `${weather.location.name} (${weather.location.country})`;
-      document.getElementById('condition').textContent = `${weather.current.condition.text}`;
+      document.getElementById('city').textContent = `${weather.location.name}/ ${weather.location.region} (${weather.location.country})`;
+      document.getElementById('condition').textContent = (`${weather.current.condition.text}`).toUpperCase();
       document.getElementById('timestamp').textContent = new Date(weather.dt*1000);
 
       let today = new Date();
@@ -47,9 +46,11 @@ if ('geolocation' in navigator) {
       },
       body: JSON.stringify(data)
     };
-    const db_response = await fetch('/api', options);
-    const db_json = await db_response.json();
-    console.log(db_json);
+
+    await fetch('/api', options);
+    // const db_response = await fetch('/api', options);
+    // const db_json = await db_response.json();
+    // console.log(db_json);
     });
 } else {
   console.log('geolocation not available');

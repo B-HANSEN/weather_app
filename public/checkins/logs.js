@@ -10,12 +10,19 @@ async function getData() {
   const response = await fetch('/api');
   const data = await response.json();
 
-//   for (let item of data) {
-//     const marker = L.marker([item.lat, item.lon]).addTo(mymap);
-//     let txt = `The weather here at ${item.lat}&deg;,
-//     ${item.lon}&deg; is `
+  for (let item of data) {
+    const marker = L.marker([item.lat, item.lon]).addTo(mymap);
+    let txt = `The weather here in ${item.weather.location.name}/ ${item.weather.location.region} 
+        is ${item.weather.current.condition.text} `
     
-//     marker.bindPopup(txt);
-//   }
+    marker.bindPopup(txt);
+
+    marker.on('mouseover', (e) => {
+        marker.openPopup();
+      });
+    marker.on('mouseout', (e) => {
+        marker.closePopup();
+      });
+  }
   console.log(data);
 }
