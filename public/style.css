@@ -3,3 +3,22 @@ p {
     background-color: #ffddff;
   }
   
+.button {
+    font: bold 14px Arial;
+    text-decoration: none;
+    background-color: blue;
+    color: #fff;
+    padding: 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    border-radius: 4px;
+}
+    
+a:hover {
+    color: black;
+    background-color: lightblue
+}  
+    
+    

@@ -32,23 +32,21 @@ app.post('/api', (request, response) => {
   response.json(data);
 });
 
-app.get('/weather/:latlon', async (request, response) => {
-  console.log(request.params);
-  const latlon = request.params.latlon.split(',');
-  console.log(latlon);
+app.get('/weather/:latlon', async (req, res) => {
+  const latlon = req.params.latlon.split(',');
   const lat = latlon[0];
   const lon = latlon[1];
-  console.log(lat, lon);
   const api_key = process.env.API_KEY;
-//   const weather_url = `https://api.darksky.net/forecast/${api_key}/${lat},${lon}/?units=si`;
-//   const weather_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}`;
-  const weather_url = `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}`;
-  const weather_response = await fetch(weather_url);
-  console.log(weather_response)
-  const weather_data = await weather_response.json();
+  try {
+    const weather_url = `http://api.weatherapi.com/v1/current.json?key=${api_key}&q=${lat},${lon}&aqi=no`;
+    const weather_response = await fetch(weather_url);
+    const weather_data = await weather_response.json();
 
-  const data = {
-    weather: weather_data,
-  };
-  response.json(data);
+    const data = {
+      weather: weather_data,
+    };
+    res.json(data);
+  } catch (e) {
+      console.log(e);
+  }
 });

@@ -11,14 +11,14 @@
     <title>The Weather Here</title>
   </head>
   <body>
-    <h1>The Weather is Here</h1>
+    <h1>The current weather in <span id="city"></span></h1>
     <div>
-      <a href="/">check in</a> | <a href="/checkins">view checkins</a>
+      <a class="button" href="/">check in</a> | <a class="button" href="/checkins">view checkins</a>
     </div>
     <p>
-      The weather here in <span id="city"></span> (at coordinates lon:<span id="latitude"></span>&deg;, lat:<span id="longitude"></span>&deg;) is 
-      <span id="summary"></span>
-       with a temperature of <span id="temp">...</span>&deg; C.
+      The weather here (at coordinates lon:<span id="latitude"></span>&deg;, lat:<span id="longitude"></span>&deg;) is 
+      <span id="condition"></span>
+       with a temperature of <span id="temp"></span> &deg;C.
     </p>
     <p>Timestamp: <span id="timestamp"></span></p>
     <p>Current time: <span id="timeNow"></span></p>
