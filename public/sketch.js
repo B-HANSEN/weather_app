@@ -1,10 +1,3 @@
-const dateHelper = time => {
-    if(time<10) {
-        return `0${time}`;
-    }
-    return `${time}`;
-}
-
 // Geo Locate
 let lat, lon;
 if ('geolocation' in navigator) {
@@ -27,6 +20,7 @@ if ('geolocation' in navigator) {
       document.getElementById('condition').textContent = (`${weather.current.condition.text}`).toUpperCase();
       document.getElementById('timestamp').textContent = new Date(weather.dt*1000);
 
+      const dateHelper = time => time<10 ? `0${time}` : `${time}`;
       let today = new Date();
         const YY = today.getFullYear();
         const DD = () => {
