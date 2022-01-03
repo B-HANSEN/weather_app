@@ -1,3 +1,10 @@
+const dateHelper = time => {
+    if(time<10) {
+        return `0${time}`;
+    }
+    return `${time}`;
+}
+
 // Geo Locate
 let lat, lon;
 if ('geolocation' in navigator) {
@@ -21,18 +28,26 @@ if ('geolocation' in navigator) {
       document.getElementById('timestamp').textContent = new Date(weather.dt*1000);
 
       let today = new Date();
-      const opts = {
-        hour12: false,
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric'
-      };
+        const YY = today.getFullYear();
+        const DD = () => {
+            const date = today.getDate();
+            return dateHelper(date);
+        }
+        const MN = () => {
+            const month = today.getMonth()+1;
+            return dateHelper(month);
+        } 
+        const HH = () => {
+            const hours = today.getHours();
+            return dateHelper(hours);
+        }
+        const MM = () => {
+            const mins = today.getMinutes();
+            return dateHelper(mins);
+        }
 
       document.getElementById('timestamp').textContent = weather.current.last_updated;
-    document.getElementById('timeNow').textContent = today.toLocaleString('en-US', opts);
+      document.getElementById('timeNow').textContent = `${YY}-${MN()}-${DD()} ${HH()}:${MM()}`;
 
     } catch (error) {
         console.error(error);

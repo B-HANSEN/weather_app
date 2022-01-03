@@ -1,6 +1,7 @@
 {
   "name": "the_weather_app",
   "version": "1.0.0",
+  "type": "module",
   "description": "This is a weather app",
   "main": "index.js",
   "scripts": {
